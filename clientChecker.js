@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-const uri = "mongodb+srv://divyanshpathak129:hmjPlPjkGUI52oue@mindflow-data.hk6a6.mongodb.net/?retryWrites=true&w=majority&appName=mindflow-data";
+const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
