@@ -13,7 +13,7 @@ async function sendMail(email, subject, text) {
             },
         });
 
-        console.log("Trnaspoter Created")
+        console.log("Transponder Created OTP Values are",email, text)
 
         const mailContent = `
        <!DOCTYPE html>
