@@ -5,13 +5,11 @@ async function sendMail(email, subject, text) {
     host: "smtp-relay.sendinblue.com",
     port: 587,
     auth: {
-        user: "7ee17a002@smtp-brevo.com",
-        pass: "gUdZ3tsKm4qcvXNT",
+        user: process.env.USER,
+        pass: process.env.PASS,
     },
 });
 
-  console.log("Transponder Created", email, text)
-  
 const mailContent = `
         <!DOCTYPE html>
          <html lang="en">
