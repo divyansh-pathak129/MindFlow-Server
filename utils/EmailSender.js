@@ -5,8 +5,8 @@ async function sendMail(email, subject, text) {
     host: "smtp-relay.sendinblue.com",
     port: 587,
     auth: {
-        user: process.env.USER,
-        pass: process.env.PASS,
+        user: "7ee17a002@smtp-brevo.com",
+        pass: "gUdZ3tsKm4qcvXNT",
     },
 });
 
