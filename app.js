@@ -100,10 +100,14 @@ io.on("connection", async (socket) => {
     socket.on("send-otp", async (email, otp) => {
         console.log("Recieved")
         // const text = "Your otp is " + otp;
-        const subject = "Your OTP is here"
+        if(otp === ""){
+          
+        }else{
+          const subject = "Your OTP of MindFlow Is"
         const text = otp
         const emailSent = await sendMail(email, subject, text);
         socket.emit("emailSent", emailSent);
+        }
     })
 
     socket.on("deleteNote", async (id, noteId) => {
