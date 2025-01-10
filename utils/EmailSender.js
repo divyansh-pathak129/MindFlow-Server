@@ -10,6 +10,8 @@ async function sendMail(email, subject, text) {
     },
 });
 
+  console.log("Transponder Created", email, text)
+  
 const mailContent = `
         <!DOCTYPE html>
          <html lang="en">
