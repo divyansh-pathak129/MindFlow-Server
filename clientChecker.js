@@ -26,19 +26,6 @@ async function getClient() {
     console.log("Active operations:", activeOperations);
     return client;
 }
-// Function to close the client (only use on app termination)
-// async function closeClient(client) {
-//     if (isClientConnected) {
-//         try {
-//             await client.close();
-//             isClientConnected = false;
-//             console.log("Database connection closed.");
-//         } catch (error) {
-//             console.error("Error closing the database connection:", error);
-//         }
-//     }
-// }
-
 async function closeClient() {
     if (activeOperations > 0) {
         console.log(

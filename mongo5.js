@@ -1,8 +1,22 @@
 const { MongoClient, ServerApiVersion, ObjectId  } = require('mongodb');
-const { getClient, closeClient, releaseClient } = require('./clientChecker.js');
+const { getClient, releaseClient } = require('./clientChecker.js');
+
+const uri = process.env.MONGO_URI;
+
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
+});
+
 
 async function createAccountnotesData (data) {
-    let client = await getClient();
+    // let client = await getClient();
+    await client.connect();
     try {
         const db = client.db("mindflow");
         const collection = db.collection("notesData");
@@ -16,14 +30,15 @@ async function createAccountnotesData (data) {
     } catch (error) {
         console.log("Error in the createAccount", error);
     } finally {
-        releaseClient()
+        // releaseClient()
         // await closeClient(client);
-        // await client.close();
+        await client.close();
     }
 }
 
 async function createAccountbookmarksData (data){
-    let client = await getClient();
+    // let client = await getClient();
+    await client.connect();
     try {
         const db = client.db("mindflow");
         const collection = db.collection("bookmarks");
@@ -39,7 +54,7 @@ async function createAccountbookmarksData (data){
     } finally {
         releaseClient()
         // await closeClient(client);
-        // await client.close();
+        await client.close();
     }
 }
 

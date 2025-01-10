@@ -1,6 +1,19 @@
 const { MongoClient, ServerApiVersion, ObjectId  } = require('mongodb');
 const { getClient, closeClient, releaseClient } = require('./clientChecker.js');
 
+const uri = process.env.MONGO_URI;
+
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
+});
+
+
 async function fetchHabitsList (id) {
     let client = await getClient();
     try{
@@ -66,7 +79,8 @@ async function accountChecker(email) {
 }
 
 async function createAccountuserData (name, email, password, photoLink, isMarketingAgreed, currentIP) {
-    let client = await getClient();
+    // let client = await getClient();
+    await client.connect();
     try {
         const db = client.db("mindflow");
         const collection = db.collection("userData");
@@ -104,14 +118,15 @@ async function createAccountuserData (name, email, password, photoLink, isMarket
     } catch (error) {
         console.log("Error in the createAccount", error);
     } finally {
-        releaseClient()
+        await client.close()
         // await closeClient(client);
         // await client.close();
     }
 }
 
 async function createAccounthabitsData (data) {
-    let client = await getClient();
+    // let client = await getClient();
+    await client.connect();
     try {
         const db = client.db("mindflow");
         const collection = db.collection("habitsData");
@@ -125,9 +140,9 @@ async function createAccounthabitsData (data) {
     } catch (error) {
         console.log("Error in the createAccount", error);
     } finally {
-        releaseClient()
+        // releaseClient()
         // await closeClient(client);
-        // await client.close();
+        await client.close();
     }
 }
 
