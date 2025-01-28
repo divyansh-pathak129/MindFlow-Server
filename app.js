@@ -88,7 +88,7 @@ io.on("connection", async (socket) => {
       
           // All data created successfully, emit success
           console.log("Everything created successfully.");
-          socket.emit("accountCreated", true);
+          socket.emit("accountCreated", userData  );
       
         } catch (error) {
           console.error("Error in createAccount:", error.message);
