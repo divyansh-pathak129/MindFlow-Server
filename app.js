@@ -196,5 +196,5 @@ io.on("connection", async (socket) => {
     
 })
 
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 8443;
 server.listen(PORT, () => console.log("Server is Running on " + PORT));
